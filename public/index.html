@@ -944,7 +944,7 @@
         // 验证邀请码
         async function validateInviteCode(code) {
             try {
-                const response = await fetch(`${API_BASE_URL}/auth/validate-invite-code`, {
+                const response = await fetch(`${API_BASE_URL}/api/auth/validate-invite-code`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -1013,7 +1013,7 @@
                 
                 try {
                     // 调用后端注册API
-                    const response = await fetch(`${API_BASE_URL}/auth/register`, {
+                    const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -1087,7 +1087,7 @@
             if (isValid) {
                 try {
                     // 调用后端登录API
-                    const response = await fetch(`${API_BASE_URL}/auth/login`, {
+                    const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -1138,7 +1138,7 @@
         async function logout() {
             try {
                 // 调用后端退出API
-                await fetch(`${API_BASE_URL}/auth/logout`, {
+                await fetch(`${API_BASE_URL}/api/auth/logout`, {
                     method: 'POST',
                     headers: {
                         'Authorization': `Bearer ${getToken()}`
@@ -1170,7 +1170,7 @@
             
             try {
                 // 调用后端验证token
-                const response = await fetch(`${API_BASE_URL}/auth/user-info`, {
+                const response = await fetch(`${API_BASE_URL}/api/auth/user-info`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`
