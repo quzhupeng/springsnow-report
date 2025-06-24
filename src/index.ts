@@ -126,7 +126,7 @@ router.post('/auth/register', async (request: IRequest, env: Env) => {
       username: username,
       roles: ["user"],
       exp: Math.floor(Date.now() / 1000) + 24 * 60 * 60, // 24小时有效期
-    }, env.JWT_SECRET);
+    }, env.JWT_SECRET || 'default-secret-key');
 
     return createResponse(200, '注册成功', {
       token,
@@ -186,7 +186,7 @@ router.post('/auth/login', async (request: IRequest, env: Env) => {
       username: user.username,
       roles: roles,
       exp: Math.floor(Date.now() / 1000) + 24 * 60 * 60, // 24小时有效期
-    }, env.JWT_SECRET);
+    }, env.JWT_SECRET || 'default-secret-key');
 
     return createResponse(200, '登录成功', {
       token,
@@ -252,7 +252,7 @@ router.get('/auth/user-info', async (request: IRequest, env: Env) => {
     // 验证JWT令牌
     try {
       // 根据类型定义，verify可能返回undefined
-      const jwtData = await verify<UserJwtPayload>(token, env.JWT_SECRET);
+      const jwtData = await verify<UserJwtPayload>(token, env.JWT_SECRET || 'default-secret-key');
       if (!jwtData) {
         return createResponse(401, 'token已过期或无效，请重新登录。');
       }
