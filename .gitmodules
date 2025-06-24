@@ -1,3 +1,3 @@
 [submodule "my-auth-worker"]
-	path = my-auth-worker
-	url = https://github.com/quzhupeng/my-auth-worker.git
+    path = my-auth-worker
+    url = ../my-auth-worker.git
