@@ -662,7 +662,7 @@
             </form>
             
             <!-- 注册表单 -->
-            <form id="registerForm" class="auth-form">
+            <form id="register-form" class="auth-form">
                 <div class="invite-note">
                     📋 注册需要有效的邀请码，请联系管理员获取
                 </div>
@@ -881,7 +881,7 @@
             const loginTab = document.querySelector('.auth-tab:nth-child(1)');
             const registerTab = document.querySelector('.auth-tab:nth-child(2)');
             const loginForm = document.getElementById('loginForm');
-            const registerForm = document.getElementById('registerForm');
+            const registerForm = document.getElementById('register-form');
             
             if (tab === 'login') {
                 loginTab.classList.add('active');
@@ -944,7 +944,7 @@
         // 验证邀请码
         async function validateInviteCode(code) {
             try {
-                const response = await fetch(`${API_BASE_URL}/api/auth/validate-invite-code`, {
+                const response = await fetch(`${API_BASE_URL}/auth/validate-invite-code`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -1013,7 +1013,7 @@
                 
                 try {
                     // 调用后端注册API
-                    const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
+                    const response = await fetch(`${API_BASE_URL}/auth/register`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -1087,7 +1087,7 @@
             if (isValid) {
                 try {
                     // 调用后端登录API
-                    const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
+                    const response = await fetch(`${API_BASE_URL}/auth/login`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -1138,7 +1138,7 @@
         async function logout() {
             try {
                 // 调用后端退出API
-                await fetch(`${API_BASE_URL}/api/auth/logout`, {
+                await fetch(`${API_BASE_URL}/auth/logout`, {
                     method: 'POST',
                     headers: {
                         'Authorization': `Bearer ${getToken()}`
@@ -1155,7 +1155,7 @@
                 
                 // 重置表单
                 document.getElementById('loginForm').reset();
-                document.getElementById('registerForm').reset();
+                document.getElementById('register-form').reset();
                 switchAuthTab('login');
             }
         }
@@ -1170,7 +1170,7 @@
             
             try {
                 // 调用后端验证token
-                const response = await fetch(`${API_BASE_URL}/api/auth/user-info`, {
+                const response = await fetch(`${API_BASE_URL}/auth/user-info`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`
@@ -1218,7 +1218,7 @@
         // 初始化
         document.addEventListener('DOMContentLoaded', async function() {
             // 添加表单提交事件监听
-            document.getElementById('registerForm').addEventListener('submit', handleRegisterSubmit);
+            document.getElementById('register-form').addEventListener('submit', handleRegisterSubmit);
             document.getElementById('loginForm').addEventListener('submit', handleLoginSubmit);
             
             // 设置邀请码验证
